@@ -2,6 +2,8 @@
   "version": "0.0.0",
 
   "imports": {
-    "@yurkimus/response-statuses": "https://raw.githubusercontent.com/yurkimus/response-statuses/main/source/index.js"
+    "@yurkimus/response-statuses": "https://raw.githubusercontent.com/yurkimus/response-statuses/main/source/index.js",
+
+    "@yurkimus/types": "https://raw.githubusercontent.com/yurkimus/types/main/source/index.js"
   }
 }
