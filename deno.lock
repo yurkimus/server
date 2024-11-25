@@ -1,0 +1,6 @@
+{
+  "version": "4",
+  "remote": {
+    "https://raw.githubusercontent.com/yurkimus/response-statuses/main/source/index.js": "9573f28c435df8887c151f3b6afd9c6cffbbd7b624dab1318bf7611970e75597"
+  }
+}
