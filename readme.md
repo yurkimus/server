@@ -15,3 +15,9 @@ response = (headers: Headers, response: Response) =>
 ```
 exception = (reason: any) => Response
 ```
+
+### notFound
+
+```
+exception = () => Response
+```

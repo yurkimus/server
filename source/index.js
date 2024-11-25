@@ -50,3 +50,12 @@ export let exception = reason => {
     { ...ResponseStatus.of('Internal Server Error') },
   )
 }
+
+export let notFound = () => {
+  console.log('[server] not found\n', reason)
+
+  return Response.json(
+    { message: `Route not found.` },
+    { ...ResponseStatus.of('Not Found') },
+  )
+}
