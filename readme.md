@@ -19,5 +19,13 @@ exception = (reason: any) => Response
 ### notFound
 
 ```
-exception = () => Response
+notFound = () => Response
+```
+
+### options
+
+```
+options = (headers: Headers) =>
+  | TypeError
+  | Response
 ```

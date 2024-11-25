@@ -52,10 +52,25 @@ export let exception = reason => {
 }
 
 export let notFound = () => {
-  console.log('[server] not found\n', reason)
+  console.log('[server] not found')
 
   return Response.json(
     { message: `Route not found.` },
     { ...ResponseStatus.of('Not Found') },
+  )
+}
+
+export let options = headers => {
+  console.log('[server] options')
+
+  if (!is('Headers', headers))
+    throw new TypeError(`Parameter 'headers' must be of Headers type.`)
+
+  return new Response(
+    null,
+    {
+      ...ResponseStatus.of('No Content'),
+      headers,
+    },
   )
 }
