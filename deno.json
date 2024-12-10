@@ -1,9 +1,9 @@
 {
-  "version": "0.2.0",
+  "version": "0.0.1",
 
   "imports": {
     "@yurkimus/response-statuses": "https://raw.githubusercontent.com/yurkimus/response-statuses/main/source/index.js",
 
-    "@yurkimus/types": "https://raw.githubusercontent.com/yurkimus/types/main/source/index.js"
+    "@yurkimus/types": "npm:@yurkimus/types@0.2.1"
   }
 }
