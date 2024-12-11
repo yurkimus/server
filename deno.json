@@ -1,5 +1,5 @@
 {
-  "version": "0.0.2",
+  "version": "0.0.3",
 
   "imports": {
     "@yurkimus/response-statuses": "https://raw.githubusercontent.com/yurkimus/response-statuses/main/source/index.js",
