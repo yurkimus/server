@@ -7,8 +7,6 @@ import { is } from '@yurkimus/types'
  * @param {Response} response
  */
 export let response = (headers, response) => {
-  console.log('[server] response\n', response)
-
   if (!is('Headers', headers))
     throw new TypeError(`Parameter 'headers' must be of Headers type.`)
 
@@ -29,8 +27,6 @@ export let response = (headers, response) => {
  * @param {*} reason
  */
 export let exception = reason => {
-  console.log('[server] exception\n', reason)
-
   if (reason instanceof Response) {
     return reason
   }
@@ -51,18 +47,13 @@ export let exception = reason => {
   )
 }
 
-export let notFound = () => {
-  console.log('[server] not found')
-
-  return Response.json(
+export let notFound = () =>
+  Response.json(
     { message: `Route not found.` },
     { ...ResponseStatus.of('Not Found') },
   )
-}
 
 export let options = headers => {
-  console.log('[server] options')
-
   if (!is('Headers', headers))
     throw new TypeError(`Parameter 'headers' must be of Headers type.`)
 
