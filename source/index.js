@@ -1,17 +1,14 @@
-import { ResponseStatus } from '@yurkimus/response-statuses'
+import '@yurkimus/response-status'
 
+import { curry } from '@yurkimus/curry'
 import { is } from '@yurkimus/types'
 
-/**
- * @param {Headers} headers
- * @param {Response} response
- */
-export let response = (headers, response) => {
+export let response = curry((headers, response) => {
   if (!is('Headers', headers))
-    throw new TypeError(`Parameter 'headers' must be of Headers type.`)
+    throw new TypeError(`Parameter 'headers' must be of type 'Headers'.`)
 
   if (!is('Response', response))
-    throw new TypeError(`Parameter 'message' must be of Response type.`)
+    throw new TypeError(`Parameter 'message' must be of type 'Response'.`)
 
   return new Response(
     response.body,
@@ -21,11 +18,8 @@ export let response = (headers, response) => {
       headers: new Headers([...response.headers, ...headers]),
     },
   )
-}
+})
 
-/**
- * @param {*} reason
- */
 export let exception = reason => {
   if (reason instanceof Response) {
     return reason
@@ -37,20 +31,20 @@ export let exception = reason => {
         name: reason.name,
         message: reason.message,
       },
-      { ...ResponseStatus.of('Internal Server Error') },
+      ResponseStatus('Internal Server Error'),
     )
   }
 
   return Response.json(
     { message: `Unhandled exception.` },
-    { ...ResponseStatus.of('Internal Server Error') },
+    ResponseStatus('Internal Server Error'),
   )
 }
 
 export let notFound = () =>
   Response.json(
     { message: `Route not found.` },
-    { ...ResponseStatus.of('Not Found') },
+    ResponseStatus.of('Not Found'),
   )
 
 export let options = headers => {
@@ -60,8 +54,8 @@ export let options = headers => {
   return new Response(
     null,
     {
-      ...ResponseStatus.of('No Content'),
       headers,
+      ...ResponseStatus('No Content'),
     },
   )
 }
