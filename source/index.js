@@ -44,7 +44,7 @@ export let exception = reason => {
 export let notFound = () =>
   Response.json(
     { message: `Route not found.` },
-    ResponseStatus.of('Not Found'),
+    ResponseStatus('Not Found'),
   )
 
 export let options = headers => {
