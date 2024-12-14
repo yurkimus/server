@@ -1,3 +1,5 @@
+import '@yurkimus/errors'
+
 import '@yurkimus/response-status'
 
 import { curry } from '@yurkimus/curry'
@@ -21,9 +23,26 @@ export let response = curry((headers, response) => {
 })
 
 export let exception = reason => {
-  if (reason instanceof Response) {
+  if (reason instanceof Response)
     return reason
-  }
+
+  if (reason instanceof AuthorizationError)
+    return Response.json(
+      {
+        name: reason.name,
+        message: reason.message,
+      },
+      ResponseStatus('Unauthorized'),
+    )
+
+  if (reason instanceof RequestError)
+    return Response.json(
+      {
+        name: reason.name,
+        message: reason.message,
+      },
+      ResponseStatus('Bad Request'),
+    )
 
   if (reason instanceof Error) {
     return Response.json(
@@ -36,7 +55,10 @@ export let exception = reason => {
   }
 
   return Response.json(
-    { message: `Unhandled exception.` },
+    {
+      name: 'UnhandledError',
+      message: 'Unhandled error.',
+    },
     ResponseStatus('Internal Server Error'),
   )
 }
