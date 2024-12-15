@@ -1,5 +1,4 @@
 import '@yurkimus/errors'
-
 import '@yurkimus/response-status'
 
 import { curry } from '@yurkimus/curry'
@@ -7,10 +6,14 @@ import { is } from '@yurkimus/types'
 
 export let response = curry((headers, response) => {
   if (!is('Headers', headers))
-    throw new TypeError(`Parameter 'headers' must be of type 'Headers'.`)
+    throw TypeError(
+      `Parameter 'headers' must be of type 'Headers'.`,
+    )
 
   if (!is('Response', response))
-    throw new TypeError(`Parameter 'message' must be of type 'Response'.`)
+    throw TypeError(
+      `Parameter 'message' must be of type 'Response'.`,
+    )
 
   return new Response(
     response.body,
@@ -71,7 +74,9 @@ export let notFound = () =>
 
 export let options = headers => {
   if (!is('Headers', headers))
-    throw new TypeError(`Parameter 'headers' must be of Headers type.`)
+    throw TypeError(
+      `Parameter 'headers' must be of Headers type.`,
+    )
 
   return new Response(
     null,
